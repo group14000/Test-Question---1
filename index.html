@@ -4,120 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Management</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h2>Add Products</h2>
+    <h2>Create Product</h2>
+    <label for="sellingPrice">Selling Price:</label>
+    <input
+      type="number"
+      id="sellingPrice"
+      placeholder="Enter price of the product"
+    />
     <label for="productName">Product Name:</label>
-    <input type="text" id="productName" placeholder="Enter product name" />
-    <label for="productPrice">Selling Price:</label>
-    <input type="number" id="productPrice" placeholder="Enter product price" />
-    <button id="addProduct">Add Product</button>
+    <input
+      type="text"
+      id="productName"
+      placeholder="Enter name of the product"
+    />
+    <button onclick="addProduct()">Add Product</button>
 
     <h2>Products</h2>
-    <ul id="productList">
-      <!-- Product items will be displayed here -->
-    </ul>
     <p>
       <strong>Total value worth of products:</strong>
       <span id="totalValue">0</span>
     </p>
-
-    <script>
-      // Fetch existing products from the server and display them
-      fetch("https://crudcrud.com/api/f4aaa73b861842879ad5d520517d03aa")
-        .then((response) => response.json())
-        .then((data) => {
-          data.forEach((product) => {
-            displayProduct(product);
-          });
-          updateTotalValue();
-        })
-        .catch((error) => console.error("Error fetching data:", error));
-
-      // Function to display a product item
-      function displayProduct(product) {
-        const productList = document.getElementById("productList");
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `${product.name} - $${product.price} <button class="deleteButton" data-id="${product._id}">Delete</button>`;
-        productList.appendChild(listItem);
-
-        // Add a click event listener to the delete button
-        const deleteButton = listItem.querySelector(".deleteButton");
-        deleteButton.addEventListener("click", () => {
-          const productId = deleteButton.getAttribute("data-id");
-          deleteProduct(productId);
-        });
-      }
-
-      // Function to add a new product
-      document.getElementById("addProduct").addEventListener("click", () => {
-        const productName = document.getElementById("productName").value;
-        const productPrice = parseFloat(
-          document.getElementById("productPrice").value
-        );
-
-        if (productName && !isNaN(productPrice)) {
-          // Create a new product object
-          const newProduct = {
-            name: productName,
-            price: productPrice,
-          };
-
-          // Send the new product to the server
-          fetch("https://crudcrud.com/api/f4aaa73b861842879ad5d520517d03aa", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newProduct),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              // Display the new product on the page
-              displayProduct(data);
-
-              // Clear input fields
-              document.getElementById("productName").value = "";
-              document.getElementById("productPrice").value = "";
-
-              // Update the total value
-              updateTotalValue();
-            })
-            .catch((error) => console.error("Error adding product:", error));
-        }
-      });
-
-      // Function to delete a product
-      function deleteProduct(productId) {
-        // Delete the product from the server
-        fetch(
-          `https://crudcrud.com/api/f4aaa73b861842879ad5d520517d03aa/${productId}`,
-          {
-            method: "DELETE",
-          }
-        )
-          .then(() => {
-            // Remove the product from the page
-            const listItem = document.querySelector(`[data-id="${productId}"]`);
-            listItem.remove();
-
-            // Update the total value
-            updateTotalValue();
-          })
-          .catch((error) => console.error("Error deleting product:", error));
-      }
-
-      // Function to update the total value
-      function updateTotalValue() {
-        const totalValue = document.getElementById("totalValue");
-        const productPrices = Array.from(
-          document.querySelectorAll("#productList li")
-        ).map((item) => {
-          return parseFloat(item.textContent.split("$")[1]);
-        });
-        const total = productPrices.reduce((acc, price) => acc + price, 0);
-        totalValue.textContent = total.toFixed(2);
-      }
-    </script>
+    <ul id="productList"></ul>
+    <script src="script.js"></script>
   </body>
 </html>
