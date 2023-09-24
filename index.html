@@ -1,53 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Management</title>
-    <!-- Add Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    <!-- Add your custom CSS -->
-  </head>
-  <body>
-    <div class="container mt-5">
-      <h2>Create Product</h2>
-      <div class="mb-3">
-        <label for="sellingPrice" class="form-label">Selling Price:</label>
-        <input
-          type="number"
-          class="form-control"
-          id="sellingPrice"
-          placeholder="Enter price of the product"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="productName" class="form-label">Product Name:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="productName"
-          placeholder="Enter name of the product"
-        />
-      </div>
-      <button onclick="addProduct()" class="btn btn-primary">
-        Add Product
-      </button>
 
-      <h2 class="mt-5">Products</h2>
-      <p>
-        <strong>Total value worth of products:</strong>
-        <span id="totalValue">0</span>
-      </p>
-      <ul id="productList" class="list-group">
-        <!-- Product list items will be dynamically added here using JavaScript -->
-      </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Management</title>
+  <!-- Add Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <!-- Add your custom CSS -->
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h2>Create Product</h2>
+    <div class="mb-3">
+      <label for="sellingPrice" class="form-label">Selling Price:</label>
+      <input type="number" class="form-control" id="sellingPrice" placeholder="Enter price of the product" />
     </div>
+    <div class="mb-3">
+      <label for="productName" class="form-label">Product Name:</label>
+      <input type="text" class="form-control" id="productName" placeholder="Enter name of the product" />
+    </div>
+    <button onclick="addProduct()" class="btn btn-primary">
+      Add Product
+    </button>
 
-    <!-- Add Bootstrap JavaScript and your custom script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+    <h2 class="mt-5">Products</h2>
+    <p>
+      <strong>Total value worth of products:</strong>
+      <span id="totalValue">0</span>
+    </p>
+    <ul id="productList" class="list-group">
+      <!-- Product list items will be dynamically added here using JavaScript -->
+    </ul>
+  </div>
+
+  <!-- Add Bootstrap JavaScript and your custom script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>
