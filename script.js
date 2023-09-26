@@ -16,7 +16,7 @@ function addProduct() {
   localStorage.setItem("products", JSON.stringify(products)); // Store the updated products array in localStorage
 
   // Send the product data to the REST API
-  fetch("https://crudcrud.com/api/f4aaa73b861842879ad5d520517d03aa", {
+  fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "POST", // HTTP POST request
     headers: {
       "Content-Type": "application/json", // Set the request content type to JSON
@@ -25,7 +25,7 @@ function addProduct() {
   })
     .then((response) => response.json()) // Parse the response JSON
     .then((data) => console.log(data)) // Log the response data to the console
-    .catch((error) => console.log(error)); // Log any errors that occur
+    .catch((error) => console.error("Error sending data to API:", error)); // Log any errors that occur
 
   // Clear the input fields
   document.getElementById("sellingPrice").value = ""; // Clear the selling price input field
