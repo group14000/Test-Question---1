@@ -16,13 +16,17 @@ function addProduct() {
   localStorage.setItem("products", JSON.stringify(products)); // Store the updated products array in localStorage
 
   // Send the product data to the REST API
-  fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST", // HTTP POST request
-    headers: {
-      "Content-Type": "application/json", // Set the request content type to JSON
-    },
-    body: JSON.stringify(product), // Send the product object as JSON in the request body
-  })
+  fetch(
+    "https://crudcrud.com/api/ec4763a716fd4464875f4492b6422861/allow-cors",
+    {
+      method: "POST", // HTTP POST request
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json", // Set the request content type to JSON
+      },
+      body: JSON.stringify(product), // Send the product object as JSON in the request body
+    }
+  )
     .then((response) => response.json()) // Parse the response JSON
     .then((data) => console.log(data)) // Log the response data to the console
     .catch((error) => console.error("Error sending data to API:", error)); // Log any errors that occur
